@@ -33,6 +33,6 @@ public class ServiciosPacientesTest {
         Eps eps1 = new Eps("Compensar", "7289374982-0");
         Paciente paciente1 = new Paciente(11111,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
         servicepacientes.registrarNuevoPaciente(paciente1);
-        //assertTrue(paciente1.equals(servicepacientes.consultarPaciente(1, "11111")));
+        assertTrue(servicepacientes.consultarPaciente(0,"CC").equals(paciente1));
     }
 }

@@ -45,7 +45,6 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas=new LinkedList<>();
-        cargarDatosEstaticos(pacientes);
     }
 
     @Override
