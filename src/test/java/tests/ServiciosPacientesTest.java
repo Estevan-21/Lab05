@@ -5,6 +5,7 @@
  */
 package tests;
 
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
@@ -20,6 +21,10 @@ import static org.junit.Assert.*;
  */
 public class ServiciosPacientesTest {
     private ServiciosPacientes servicepacientes;
+    Consulta consulta1;
+    Paciente paciente1;
+    Eps eps1;
+    
     public ServiciosPacientesTest() {
     }
     
@@ -28,11 +33,16 @@ public class ServiciosPacientesTest {
             servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
 
     }
+    
+    
     @Test
-    public void registraElPaciente() throws ExcepcionServiciosPacientes{
-        Eps eps1 = new Eps("Compensar", "7289374982-0");
-        Paciente paciente1 = new Paciente(11111,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
+    public void registrarConsulta() throws ExcepcionServiciosPacientes{
+        eps1 = new Eps("Compensar", "7289374982-0");
+        paciente1 = new Paciente(1,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
         servicepacientes.registrarNuevoPaciente(paciente1);
         assertTrue(servicepacientes.consultarPaciente(0,"CC").equals(paciente1));
+        consulta1 = new Consulta(java.sql.Date.valueOf("2000-01-01"), "Dolor de cabeza", 454);
+        servicepacientes.agregarConsultaPaciente(0, "CC", consulta1);
+        assertEquals("Prueba Registrar consulta satisfactoriamente falló",consulta1,servicepacientes.obtenerConsultasEps("Compensar").get(0));
     }
 }
