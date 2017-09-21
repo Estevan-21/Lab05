@@ -45,4 +45,11 @@ public class ServiciosPacientesTest {
         servicepacientes.agregarConsultaPaciente(0, "CC", consulta1);
         assertEquals("Prueba Registrar consulta satisfactoriamente falló",consulta1,servicepacientes.obtenerConsultasEps("Compensar").get(0));
     }
+    @Test
+    public void registrarPaciente() throws ExcepcionServiciosPacientes{
+        Paciente paciente1 = new Paciente(1,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
+        servicepacientes.registrarNuevoPaciente(paciente1);
+        assertTrue(servicepacientes.consultarPaciente(0,"CC").equals(paciente1));
+    }
+
 }
