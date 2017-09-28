@@ -38,18 +38,18 @@ public class ServiciosPacientesTest {
     @Test
     public void registrarConsulta() throws ExcepcionServiciosPacientes{
         eps1 = new Eps("Compensar", "7289374982-0");
-        paciente1 = new Paciente(1,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
+        paciente1 = new Paciente(11111,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
         servicepacientes.registrarNuevoPaciente(paciente1);
-        assertTrue(servicepacientes.consultarPaciente(0,"CC").equals(paciente1));
+        assertTrue(servicepacientes.consultarPaciente(11111,"CC").equals(paciente1));
         consulta1 = new Consulta(java.sql.Date.valueOf("2000-01-01"), "Dolor de cabeza", 454);
-        servicepacientes.agregarConsultaPaciente(0, "CC", consulta1);
+        servicepacientes.agregarConsultaPaciente(11111, "CC", consulta1);
         assertEquals("Prueba Registrar consulta satisfactoriamente falló",consulta1,servicepacientes.obtenerConsultasEps("Compensar").get(0));
     }
     @Test
     public void registrarPaciente() throws ExcepcionServiciosPacientes{
-        Paciente paciente1 = new Paciente(1,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
+        Paciente paciente1 = new Paciente(2222,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
         servicepacientes.registrarNuevoPaciente(paciente1);
-        assertTrue(servicepacientes.consultarPaciente(0,"CC").equals(paciente1));
+        assertTrue(servicepacientes.consultarPaciente(2222,"CC").equals(paciente1));
     }
 
 }

@@ -36,6 +36,7 @@ public class Paciente {
     
 
     public Paciente(int id,String tipoid, String nombre, Date fechaNacimiento,Eps eps) {
+        this.id = id;
         this.tipoId = tipoid;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
