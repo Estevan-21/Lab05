@@ -14,13 +14,25 @@
                 </p:column>                
                 <p:column headerText="Tipo de Identificacion">
                     <h:outputText value ="#{pacinte.getTipoId()}"/>
-                </p:column>                
+                </p:column>    
+                <p:column headerText="Fecha de Nacimiento">
+                    <h:outputText value ="#{paciente.getFechaNacimiento()}"/>                                         
+                </p:column>     
+                <p:column headerText="EPS">
+                    <h:outputText value ="#{paciente.getEps()}"/>                                         
+                </p:column>     
 
             </p:dataTable> 
         
         </h:form>>
         <p:outputLabel value=" Numero de identificacion del paciente"></p:outputLabel>
         <p:inputText value="#{RegistroPacienteBean.nID}"></p:inputText>
-        <p:commandButton update="tabla" actionListener="#{RegistroPacienteBean.RegistrarNuevoPaciente}"></p:commandButton> 
+        <p:outputLabel value=" Tipo de Documento del Paciente"></p:outputLabel>
+        <p:inputText value="#{RegistroPacienteBean.documenType}"></p:inputText>
+        <p:outputLabel value=" Fecha de Nacimiento del Paciente"></p:outputLabel>
+        <p:inputText value="#{RegistroPacienteBean.date}"></p:inputText>
+        <p:outputLabel value=" EPS del Paciente"></p:outputLabel>
+        <p:inputText value="#{RegistroPacienteBean.epsPaci}"></p:inputText>
+        <p:commandButton value="Agregar Nuevo Paciente" update="tabla" actionListener="#{RegistroPacienteBean.RegistrarNuevoPaciente(RegistroPacienteBean.nID,RegistroPacienteBean.documenType,RegistroPacienteBean.date, RegistroPacienteBean.epsPaci)}"></p:commandButton> 
     </h:body>
 </html>
