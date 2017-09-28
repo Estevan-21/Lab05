@@ -154,7 +154,8 @@
                         <format>xml</format>
                     </formats>
                 </configuration>
-            </plugin>        
+            </plugin>   
+                
         </plugins>
     </reporting>
     
@@ -206,7 +207,15 @@
             </plugin>      
             
                         
-            
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -267,6 +276,13 @@
             </plugin>
         </plugins>
     </build>
-    
+    <repositories>
+        <repository>
+            <url>http://repository.primefaces.org/</url>
+            <id>PrimeFaces-maven-lib</id>
+            <layout>default</layout>
+            <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+    </repositories>
 
 </project>

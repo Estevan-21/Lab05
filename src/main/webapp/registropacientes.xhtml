@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" 
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f = "http://java.sun.com/jsf/core">
     <h:head></h:head>
     Registro de Pacientes
     <h:body>         
         <h:form id="tabla">
-            
+             <p:dataTable  id="tablaPacientes" var="paciente" value="#{RegistroPacienteBean.pacientes}" 
+                          selectionMode="single" selection="#{RegistroPacienteBean.paciPivote}" rowKey="#{paciente.getId()}">                
+                <p:column headerText="Numero Identificacion Paciente">
+                    <h:outputText value ="#{paciente.getId()}"/>                                         
+                </p:column>                
+                <p:column headerText="Tipo de Identificacion">
+                    <h:outputText value ="#{pacinte.getTipoId()}"/>
+                </p:column>                
+
+            </p:dataTable> 
         
         </h:form>>
-        <p:outputLabel value="Numero de identificacion del paciente"></p:outputLabel>
+        <p:outputLabel value=" Numero de identificacion del paciente"></p:outputLabel>
         <p:inputText value="#{RegistroPacienteBean.nID}"></p:inputText>
-        <p:commandButton update="formulario_adivinanza" actionListener="#{beanEstadoAdivinanza.agregarPaciente}"></p:commandButton> 
+        <p:commandButton update="tabla" actionListener="#{RegistroPacienteBean.RegistrarNuevoPaciente}"></p:commandButton> 
     </h:body>
 </html>
