@@ -5,10 +5,14 @@
       xmlns:f = "http://java.sun.com/jsf/core">
     <h:head></h:head>
     Registro de Pacientes
+    
+    
+    
+    
     <h:body>         
         <h:form id="tabla">
-             <p:dataTable  id="tablaPacientes" var="paciente" value="#{RegistroPacienteBean.pacientes}" 
-                          selectionMode="single" selection="#{RegistroPacienteBean.paciPivote}" rowKey="#{paciente.getId()}">                
+             <p:dataTable  id="tablaPacientes" var="paciente" value="#{RegistroConsultaBean.pacientes}" 
+                          selectionMode="single" selection="#{RegistroConsultaBean.paciPivote}" rowKey="#{paciente.getId()}">                
                 <p:column headerText="Numero Identificacion Paciente">
                     <h:outputText value ="#{paciente.getId()}"/>                                         
                 </p:column>                
@@ -26,13 +30,13 @@
         
         </h:form>>
         <p:outputLabel value=" Numero de identificacion del paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroPacienteBean.nID}"></p:inputText>
+        <p:inputText value="#{RegistroConsultaBean.nID}"></p:inputText>
         <p:outputLabel value=" Tipo de Documento del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroPacienteBean.documenType}"></p:inputText>
+        <p:inputText value="#{RegistroConsultaBean.documenType}"></p:inputText>
         <p:outputLabel value=" Fecha de Nacimiento del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroPacienteBean.date}"></p:inputText>
+        <p:inputText value="#{RegistroConsultaBean.date}"></p:inputText>
         <p:outputLabel value=" EPS del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroPacienteBean.epsPaci}"></p:inputText>
-        <p:commandButton value="Agregar Nuevo Paciente" update="tabla" actionListener="#{RegistroPacienteBean.RegistrarNuevoPaciente(RegistroPacienteBean.nID,RegistroPacienteBean.documenType,RegistroPacienteBean.date, RegistroPacienteBean.epsPaci)}"></p:commandButton> 
+        <p:inputText value="#{RegistroConsultaBean.epsPaci}"></p:inputText>
+        <p:commandButton value="Agregar Nuevo Paciente" update="tabla" actionListener="#{RegistroConsultaBean.RegistrarNuevoPaciente(RegistroConsultaBean.nID,RegistroConsultaBean.documenType,RegistroConsultaBean.date, RegistroConsultaBean.epsPaci)}"></p:commandButton> 
     </h:body>
 </html>
