@@ -4,6 +4,14 @@
       xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
-    <h:body>
+    Registro de Pacientes
+    <h:body>         
+        <h:form id="tabla">
+            
+        
+        </h:form>>
+        <p:outputLabel value="Numero de identificacion del paciente"></p:outputLabel>
+        <p:inputText value="#{RegistroPacienteBean.nID}"></p:inputText>
+        <p:commandButton update="formulario_adivinanza" actionListener="#{beanEstadoAdivinanza.agregarPaciente}"></p:commandButton> 
     </h:body>
 </html>
