@@ -6,28 +6,29 @@
     <h:body>
         <h1>Registro de Citas</h1>
         <h:form id ="tabla">
-             <p:dataTable  id="tablaOrdenes" var="orden" value="#{RegistroConsultaBean.consultas}" 
-                           selectionMode="single" selection="#{RegistroConsultaBean.consulta}" rowKey="#{onsulta.getId()}">
+             <p:dataTable  id="tablaOrdenes" var="cons" value="#{HistorialPacientes.consultas}">
                  <p:column headerText="Fecha Consulta">
-                    <h:outputText value ="#{(consulta.getFechayhora())}"/>
+                    <h:outputText value ="#{(cons.getFechayHora())}"/>
                 </p:column>       
                 <p:column headerText="Resumen">
-                    <h:outputText value ="#{(consulta.getResumen())}"/>
+                    <h:outputText value ="#{(cons.getResumen())}"/>
                 </p:column>
              </p:dataTable>  
             <h3>Agregar nueva cita</h3>
             <h3></h3>
-            <h:outputLabel for="Fecha" value="Fecha y Hora:    "/>
-            <p:inputText  id="fecha" value="#{RegistroConsultaBean.fechayHora}"/>
+            <h:outputLabel for="Fecha" value="Fecha:    "/>
+            <p:inputText  id="fechayhora" value="#{HistorialPacientes.fechayHora}"/>
             <h:outputLabel value="    Resumen:"/>
-            <p:inputText id="resumen" value="#{RegistroConsultaBean.resumen}" />
+            <p:inputText id="resumen" value="#{HistorialPacientes.resumen}" />
             <h:outputLabel value="    Costo:"/>
-            <p:inputText id="costo" value="#{RegistroConsultaBean.costo}" />
+            <p:inputText id="costo" value="#{HistorialPacientes.costo}" />
             
             <h3></h3>
             <h3></h3>
-            <p:commandButton value="Agregar Orden" id="ajax"  actionListener="#{RegistroConsultaBean.crearOrden}" update="tabla" />
+            <p:commandButton value="Agregar Cita" id="ajax"  actionListener="#{HistorialPacientes.crearConsulta}" update="tabla" />
         </h:form>                                
     </h:body>
 
 </html>
+
+

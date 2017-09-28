@@ -15,6 +15,7 @@ import edu.eci.pdsw.samples.services.ServiciosPacientes;
 import edu.eci.pdsw.samples.services.impl.Tupla;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -48,14 +49,16 @@ public class RegistroConsultaBean implements Serializable {
     private  List<Consulta> consultas;
     private Consulta consulta;
     private int id;
-    private Date fechayHora;
+    private String fechayHora;
     private String resumen;
     private long costo;
+ 
     
 
     public RegistroConsultaBean() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas=new LinkedList<>();
+        consultas= new ArrayList<>();
     }
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {   
         Eps eps1 = new Eps("Compensar", "7289374982-0");
@@ -107,7 +110,7 @@ public class RegistroConsultaBean implements Serializable {
         this.consultas=c;
     }
     
-    public List<Consulta> getConsultas(){
+    public List<Consulta> getConsultas() throws ExcepcionServiciosPacientes{        
         return consultas;
     }
     
@@ -119,11 +122,11 @@ public class RegistroConsultaBean implements Serializable {
         return consulta;
     }
 
-    public void crearConsulta(){
+    public void crearConsulta() throws ExcepcionServiciosPacientes{        
         id+=1;
-        Consulta con=new Consulta(fechayHora,resumen,costo);
-        con.setId(id);
-        consultas.add(consulta);
+        consulta=new Consulta(java.sql.Date.valueOf(fechayHora),resumen,costo);
+        consulta.setId(id); 
+        consultas.add(consulta);                      
     }
     
     public int getId(){
@@ -133,10 +136,10 @@ public class RegistroConsultaBean implements Serializable {
         this.id=s;
     }
     
-    public Date getFechayhora(){
+    public String getfechayHora(){
         return fechayHora;
     }
-    public void setFechayhora(Date s){
+    public void setfechayHora(String s){
         this.fechayHora=s;
     }
     
