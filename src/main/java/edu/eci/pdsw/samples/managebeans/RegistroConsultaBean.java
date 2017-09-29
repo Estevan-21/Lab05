@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.managebeans;
 
 
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
@@ -16,6 +17,8 @@ import edu.eci.pdsw.samples.services.impl.Tupla;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,6 +45,12 @@ public class RegistroConsultaBean implements Serializable {
     public String name;
     public String date;
     public Eps epsPaci;
+    private  List<Consulta> consultas;
+    private Consulta consulta;
+    private int id;
+    private String fechayHora;
+    private String resumen;
+    private long costo;
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
     public List<Paciente> listaPacientes;
     public List<Eps> epsRegis;
@@ -58,6 +67,7 @@ public class RegistroConsultaBean implements Serializable {
         epsRegis = servicepacientes.obtenerEPSsRegistradas();
         cargarNombresEps(epsRegis);
         listaPacientes = servicepacientes.consultarPacientes();
+        consultas= new ArrayList<>();
     }
     public void cargarNombresEps(List<Eps> listaEps){
         for(Eps eps: listaEps){
@@ -138,6 +148,57 @@ public class RegistroConsultaBean implements Serializable {
         message = new FacesMessage(FacesMessage.SEVERITY_INFO, estado, mensaje);
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
+    
+    public void setConsultas(List<Consulta> c){
+        this.consultas=c;
+    }
+    
+    public List<Consulta> getConsultas() throws ExcepcionServiciosPacientes{        
+        return consultas;
+    }
+    
+    public void setConsulta(Consulta c){
+        this.consulta=c;
+    }
+    
+    public Consulta getConsulta(){
+        return consulta;
+    }
 
-
+    public void crearConsulta() throws ExcepcionServiciosPacientes{        
+        id+=1;
+        consulta=new Consulta(java.sql.Date.valueOf(fechayHora),resumen,costo);
+        consulta.setId(id); 
+        consultas.add(consulta);                      
+    }
+    
+    public int getId(){
+        return id;
+    }
+    public void setId(int s){
+        this.id=s;
+    }
+    
+    public String getfechayHora(){
+        return fechayHora;
+    }
+    public void setfechayHora(String s){
+        this.fechayHora=s;
+    }
+    
+    public String getResumen(){
+        return resumen;
+    }
+    public void setResumen(String s){
+        this.resumen=s;
+    }
+    
+     public long getCosto(){
+        return costo;
+    }
+    public void setCosto(long s){
+        this.costo=s;
+    }
+    
+    
 }
