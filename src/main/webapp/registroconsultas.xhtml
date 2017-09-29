@@ -5,8 +5,14 @@
     <h:head></h:head>
     <h:body>
         <h1>Registro de Citas</h1>
+        <h2><h:panelGrid columns="4">
+        <h:outputLabel value="Paciente:             "/>    
+        <h:outputLabel value="#{HistorialPacientes.name}"/>  
+        <h:outputLabel value="EPS:             "/>    
+        <h:outputLabel value="#{HistorialPacientes.nombreEps}"/> 
+        </h:panelGrid> </h2>
         <h:form id ="tabla">
-             <p:dataTable  id="tablaOrdenes" var="cons" value="#{HistorialPacientes.consultas}">
+             <p:dataTable  id="tablaOrdenes" var="cons" value="#{HistorialPacientes.consultas2}">
                  <p:column headerText="Fecha Consulta">
                     <h:outputText value ="#{(cons.getFechayHora())}"/>
                 </p:column>       

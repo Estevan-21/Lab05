@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 
@@ -57,6 +59,7 @@ public class RegistroConsultaBean implements Serializable {
     public Eps eps1;
     public List<String> nombresEps;
     public String nombreEps;
+    public Set<Consulta> consultas2;
     
 
     
@@ -68,7 +71,10 @@ public class RegistroConsultaBean implements Serializable {
         cargarNombresEps(epsRegis);
         listaPacientes = servicepacientes.consultarPacientes();
         consultas= new ArrayList<>();
+        consultas2= new LinkedHashSet<>();
     }
+ 
+    
     public void cargarNombresEps(List<Eps> listaEps){
         for(Eps eps: listaEps){
             nombresEps.add(eps.getNombre());
@@ -169,7 +175,8 @@ public class RegistroConsultaBean implements Serializable {
         id+=1;
         consulta=new Consulta(java.sql.Date.valueOf(fechayHora),resumen,costo);
         consulta.setId(id); 
-        consultas.add(consulta);                      
+        consultas.add(consulta);   
+        consultas2.add(consulta);
     }
     
     public int getId(){
@@ -200,5 +207,18 @@ public class RegistroConsultaBean implements Serializable {
         this.costo=s;
     }
     
+    public void setConsultas2(Set<Consulta> con){
+        this.consultas2=con;
+    }
+    
+    public Set<Consulta> getConsultas2(){
+        return consultas2;
+    }
+            
+    public void seleccionarPaciente(){
+        name=listaPacientes.get(0).getNombre();
+        nombreEps=listaPacientes.get(0).getEps().getNombre();
+        consultas2=listaPacientes.get(0).getConsultas();
+    }            
     
 }

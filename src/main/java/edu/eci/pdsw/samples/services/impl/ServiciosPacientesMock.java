@@ -170,16 +170,16 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
             Consulta consulta8 = new Consulta(java.sql.Date.valueOf("2000-02-09"), "Alergia", 322);
             Consulta consulta9 = new Consulta(java.sql.Date.valueOf("2000-02-09"), "Resfriado", 322);
 
-            agregarConsultaPaciente(1, "CC", consulta1);
-            agregarConsultaPaciente(1, "CC", consulta2);
-            agregarConsultaPaciente(1, "CC", consulta3);
-            agregarConsultaPaciente(2, "CC", consulta4);
-            agregarConsultaPaciente(3, "CC", consulta5);
-            agregarConsultaPaciente(4, "CC", consulta6);
-            agregarConsultaPaciente(5, "CC", consulta7);
-            agregarConsultaPaciente(6, "CC", consulta8);
-            agregarConsultaPaciente(7, "CC", consulta5);
-            agregarConsultaPaciente(7, "CC", consulta9);
+            agregarConsultaPaciente(11111, "CC", consulta1);
+            agregarConsultaPaciente(11111, "CC", consulta2);
+            agregarConsultaPaciente(11111, "CC", consulta3);
+            agregarConsultaPaciente(22222, "CC", consulta4);
+            agregarConsultaPaciente(33333, "CC", consulta5);
+            agregarConsultaPaciente(44444, "CC", consulta6);
+            agregarConsultaPaciente(55555, "CC", consulta7);
+            agregarConsultaPaciente(66666, "CC", consulta8);
+            agregarConsultaPaciente(77777, "CC", consulta5);
+            agregarConsultaPaciente(77777, "CC", consulta9);
 
         } catch (ExcepcionServiciosPacientes ex) {
             Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, ex);
