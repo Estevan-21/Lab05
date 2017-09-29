@@ -11,9 +11,11 @@ import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
+import edu.eci.pdsw.samples.services.impl.ServiciosPacientesMock;
 import edu.eci.pdsw.samples.services.impl.Tupla;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,23 +42,65 @@ public class RegistroConsultaBean implements Serializable {
     public String name;
     public String date;
     public Eps epsPaci;
-    private final Map<Tupla<Integer, String>, Paciente> pacientes;
-    private final List<Eps> epsregistradas;
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
+    public List<Paciente> listaPacientes;
+    public List<Eps> epsRegis;
+    public Eps eps1;
+    public List<String> nombresEps;
+    public String nombreEps;
+    
 
     
 
-    public RegistroConsultaBean() {
-        this.pacientes = new LinkedHashMap<>();
-        epsregistradas=new LinkedList<>();
+    public RegistroConsultaBean() throws ExcepcionServiciosPacientes {
+        epsRegis = new ArrayList<>();
+        nombresEps = new ArrayList<>();
+        epsRegis = servicepacientes.obtenerEPSsRegistradas();
+        cargarNombresEps(epsRegis);
+        listaPacientes = servicepacientes.consultarPacientes();
     }
-    public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {   
-        Eps eps1 = new Eps("Compensar", "7289374982-0");
-        epsregistradas.add(eps1);
-        Paciente paciente1 = new Paciente(11111,"CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"), eps1);
-        registrarNuevoPaciente(paciente1);
-        pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        System.out.println("pac interfaz"+paciente.getId());
+    public void cargarNombresEps(List<Eps> listaEps){
+        for(Eps eps: listaEps){
+            nombresEps.add(eps.getNombre());
+        } 
+    }
+    public Eps escogerEps(String nombreEps){        
+        for(Eps eps: epsRegis){
+            if(eps.getNombre().equals(nombreEps)){
+                eps1 = eps;
+            }
+        }
+        return eps1;
+    }
+    public void registrarNuevoPaciente() throws ExcepcionServiciosPacientes {           
+        Paciente paciente1 = new Paciente(nID,documenType, name, java.sql.Date.valueOf(date), escogerEps(nombreEps));
+        servicepacientes.registrarNuevoPaciente(paciente1);
+        listaPacientes = servicepacientes.consultarPacientes();
+    }
+    public void setNombreEps(String nombreEps){
+        this.nombreEps=nombreEps;
+    }
+    public String getNombreEps(){
+        return nombreEps;
+    }
+    public void setNombresEps(List<String> nombresEps){
+        this.nombresEps = nombresEps;        
+    }
+    public List<String> getNombresEps(){
+        return nombresEps;        
+    }
+
+    public void setListaPacientes(List<Paciente> pacientes){
+        this.listaPacientes = pacientes;
+    }
+    public List<Paciente> getListaPacientes(){
+        return listaPacientes;
+    }
+    public void setPaciPivote(Paciente paciPivote){
+        this.paciPivote = paciPivote;
+    }
+    public Paciente getPaciPivote(){
+        return paciPivote;
     }
     public void setnID(int nID){
         this.nID = nID;

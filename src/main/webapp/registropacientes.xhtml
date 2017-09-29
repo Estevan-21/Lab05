@@ -5,38 +5,45 @@
       xmlns:f = "http://java.sun.com/jsf/core">
     <h:head></h:head>
     Registro de Pacientes
-    
-    
-    
-    
+
+
+
+
     <h:body>         
         <h:form id="tabla">
-             <p:dataTable  id="tablaPacientes" var="paciente" value="#{RegistroConsultaBean.pacientes}" 
-                          selectionMode="single" selection="#{RegistroConsultaBean.paciPivote}" rowKey="#{paciente.getId()}">                
+            <p:dataTable  id="tablaPacientes" var="paciente" value="#{HistorialPacientes.listaPacientes}" 
+                          selectionMode="single" selection="#{HistorialPacientes.paciPivote}" rowKey="#{paciente.getId()}">                
                 <p:column headerText="Numero Identificacion Paciente">
                     <h:outputText value ="#{paciente.getId()}"/>                                         
                 </p:column>                
                 <p:column headerText="Tipo de Identificacion">
-                    <h:outputText value ="#{pacinte.getTipoId()}"/>
+                    <h:outputText value ="#{paciente.getTipoId()}"/>
                 </p:column>    
+                <p:column headerText="Nombre del Paciente">
+                    <h:outputText value ="#{paciente.getNombre()}"/>                                         
+                </p:column>  
                 <p:column headerText="Fecha de Nacimiento">
                     <h:outputText value ="#{paciente.getFechaNacimiento()}"/>                                         
                 </p:column>     
                 <p:column headerText="EPS">
-                    <h:outputText value ="#{paciente.getEps()}"/>                                         
+                    <h:outputText value ="#{paciente.getEps().getNombre()}"/>                                         
                 </p:column>     
-
-            </p:dataTable> 
-        
-        </h:form>>
-        <p:outputLabel value=" Numero de identificacion del paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroConsultaBean.nID}"></p:inputText>
-        <p:outputLabel value=" Tipo de Documento del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroConsultaBean.documenType}"></p:inputText>
-        <p:outputLabel value=" Fecha de Nacimiento del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroConsultaBean.date}"></p:inputText>
-        <p:outputLabel value=" EPS del Paciente"></p:outputLabel>
-        <p:inputText value="#{RegistroConsultaBean.epsPaci}"></p:inputText>
-        <p:commandButton value="Agregar Nuevo Paciente" update="tabla" actionListener="#{RegistroConsultaBean.RegistrarNuevoPaciente(RegistroConsultaBean.nID,RegistroConsultaBean.documenType,RegistroConsultaBean.date, RegistroConsultaBean.epsPaci)}"></p:commandButton> 
+            </p:dataTable>          
+        </h:form>
+        <h:form id="Botones">
+            <p:outputLabel value=" Numero de identificacion del paciente: "></p:outputLabel>
+            <p:inputText value="#{HistorialPacientes.nID}"></p:inputText>
+            <p:outputLabel value=" Tipo de Documento del Paciente: "></p:outputLabel>
+            <p:inputText value="#{HistorialPacientes.documenType}"></p:inputText>
+            <p:outputLabel value=" Nombre del Paciente: "></p:outputLabel>
+            <p:inputText value="#{HistorialPacientes.name}"></p:inputText>
+            <p:outputLabel value=" Fecha de Nacimiento del Paciente: "></p:outputLabel>
+            <p:inputText value="#{HistorialPacientes.date}"></p:inputText>       
+            <p:outputLabel for="epsPaci" value="EPS: " />
+            <p:selectOneMenu id="epsPaci" value="#{HistorialPacientes.nombreEps}" style="width:140px">
+                <f:selectItems value="#{HistorialPacientes.nombresEps}"/>
+            </p:selectOneMenu>
+            <p:commandButton value="Agregar Nuevo Paciente" update=":tabla" actionListener="#{HistorialPacientes.registrarNuevoPaciente()}"></p:commandButton> 
+        </h:form>
     </h:body>
 </html>

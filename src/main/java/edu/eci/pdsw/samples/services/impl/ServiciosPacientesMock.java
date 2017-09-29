@@ -45,6 +45,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas=new LinkedList<>();
+        cargarDatosEstaticos(pacientes);
     }
 
     @Override
@@ -61,7 +62,6 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {        
         pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        System.out.println("pac"+paciente.getId());
     }
 
     @Override
@@ -190,7 +190,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     @Override
     public List<Eps> obtenerEPSsRegistradas() throws ExcepcionServiciosPacientes {
         return epsregistradas;
-    }
+    }    
 
     
 }
